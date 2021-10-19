@@ -33,4 +33,4 @@ If you don't want to include a polyfill, you can use an empty module like this:
 
 
 ## 运行结果
-![image](https://github.com/aweitian/react-wepack/blob/master/shell.png)
+![image](https://raw.githubusercontent.com/aweitian/react-wepack/master/11-ssh2/shell.png)

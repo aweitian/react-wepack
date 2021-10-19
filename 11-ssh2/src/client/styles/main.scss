@@ -1,0 +1,9 @@
+$font-size: 1rem;
+$font-color: green;
+$bg-color:black;
+
+html {
+  font-size: $font-size;
+  color: $font-color;
+  background-color: $bg-color;
+}

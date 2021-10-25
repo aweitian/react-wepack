@@ -1,7 +1,5 @@
 <template>
-  <div v-loading.fullscreen.lock='fullscreenLoading'>
-    <img v-if="ewm_src" :src="ewm_src">
-  </div>
+  <div></div>
 </template>
 
 <script>

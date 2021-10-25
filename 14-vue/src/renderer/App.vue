@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: '14-vue'
+    name: 'terminalive'
   }
 </script>
 

@@ -75,7 +75,7 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^2.0.4",
+    "electron": "12.0.13",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-builder": "^20.19.2",
@@ -96,7 +96,7 @@
     "xterm-addon-unicode11": "0.2.0",
     "xterm-addon-web-links": "0.4.0",
     "xterm-addon-webgl": "0.11.1",
-
+    "crypto-js": "^4.1.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

@@ -8,17 +8,17 @@ export default new Router({
     {
       path: '/',
       name: 'home-page',
-      component: require('@/components/index').default
+      component: require('@/view/index').default
     },
     {
       path: '/wx',
       name: 'wx-page',
-      component: require('@/components/wx').default
+      component: require('@/view/wx').default
     },
     {
       path: '/shell_list',
       name: 'shell-list',
-      component: require('@/components/shell_list').default
+      component: require('@/view/shell_list').default
     },
     {
       path: '*',

@@ -19,7 +19,9 @@
         </div>
       </el-col>
       <el-col :span="20" class="app-right"> 
-          <div style="height:500px;width:500px;border:1px solid red;"><session v-if="so" :connection="so_data" /></div>
+          <div style="height:500px;width:500px;border:1px solid red;">
+           
+          </div>
           <host-item :list="hosts" @delok="showHosts" @edit="edit"/>
 
           

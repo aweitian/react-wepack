@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span="20" class="app-right"> 
           <div style="height:500px;width:500px;border:1px solid red;">
-           
+           <session :connection="so_data" />
           </div>
           <host-item :list="hosts" @delok="showHosts" @edit="edit"/>
 
@@ -57,7 +57,7 @@ export default {
                 port:22,
                 username:'root',
                 pass_type:'password',
-                password:'Xzq6jw6bNV1THj8n'
+                password:'*****'
       };
       this.so = true;
     },

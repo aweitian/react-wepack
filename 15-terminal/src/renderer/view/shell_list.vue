@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span="20" class="app-right"> 
           <div style="height:500px;width:500px;border:1px solid red;">
-           <session :connection="so_data" />
+           <session ref="ses" :connection="so_data" v-if="so"/>
           </div>
           <host-item :list="hosts" @delok="showHosts" @edit="edit"/>
 
@@ -53,13 +53,14 @@ export default {
   methods: {
     test() {
       this.so_data = {
-                host:'106.14.168.133',
+                host:'127.0.0.1',
                 port:22,
                 username:'root',
                 pass_type:'password',
-                password:'*****'
+                password:'root'
       };
       this.so = true;
+      // this.$refs.ses.connect();
     },
     edit(item) {
       this.$refs.form.edit(item);

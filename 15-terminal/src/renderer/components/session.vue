@@ -24,6 +24,9 @@ export default {
             // }
         }
     },
+    mounted(){
+        this.connect();
+    },
     methods:{
         initTerm() {
             let term = new Terminal({

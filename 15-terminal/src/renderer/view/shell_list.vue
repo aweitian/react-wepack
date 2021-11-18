@@ -14,7 +14,7 @@
 
           <el-button type="primary" @click="add">添加主机</el-button>
           <el-button type="success" @click="showHosts()">主机列表</el-button>
-          <el-button type="primary" @click="test">test</el-button>
+          <el-button type="primary" @click="test">begin to test</el-button>
 
         </div>
       </el-col>

@@ -1,5 +1,5 @@
 <template>
-<div style="height:100vh;over-flow:auto">
+<div style="over-flow:auto">
   <el-row>
     <el-col :span="6" v-for="item in list" :key="item.id">
       <el-card class="box-card" style="position:relative">

@@ -66,7 +66,5 @@ export default {
 <style scoped>
 .session-mgr{
   height: 100%;
-  width: 100vw;
-  border: 1px solid #02ba6c;
 }
 </style>

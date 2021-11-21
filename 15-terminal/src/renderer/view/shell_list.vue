@@ -14,17 +14,28 @@
 
           <el-button type="primary" @click="add">添加主机</el-button>
           <el-button type="success" @click="showHosts()">主机列表</el-button>
-          <el-button type="primary" @click="test">test</el-button>
+          <!-- <el-button type="primary" @click="test">test</el-button> -->
 
         </div>
       </el-col>
       <el-col :span="20" class="app-right"> 
           <session-mgr ref="session_mgr"/>
-          <host-item :list="hosts" @delok="showHosts" @edit="edit" @connect="connect"/>
-
-          
       </el-col>
     </el-row>
+
+
+    <el-dialog
+      title="提示"
+      :visible.sync="hostsDialogVisible"
+      width="80%"
+      center>
+                <host-item :list="hosts" @delok="showHosts" @edit="edit" @connect="connect"/>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="hostsDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="hostsDialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -43,6 +54,7 @@ export default {
       so_data:null,
       avatar: null,
       user_name: null,
+      hostsDialogVisible:false,
       hosts:[]
     };
   },
@@ -99,6 +111,7 @@ export default {
           }
           
           that.hosts = data.data.data;
+          that.hostsDialogVisible = true;
         } else {
           that.$message.error(data.message);
         }

@@ -1,5 +1,5 @@
 <template>
-    <div ref="term"></div>
+    <div ref="term" class="term"></div>
 </template>
 
 
@@ -25,7 +25,26 @@ export default {
         }
     },
     mounted(){
-        this.connect();
+        var item = {}
+        console.log(this.connection)
+        if(this.connection.pass_type == 'private_key') {
+            //this.connection.privateKey = this.connection.password;
+            item.host = this.connection.ip;
+            item.port = this.connection.port;
+            item.username = this.connection.name;
+            item.privateKey = this.connection.private_key;
+        } else {
+            item.host = this.connection.ip;
+            item.port = this.connection.port;
+            item.username = this.connection.name;
+            item.password = this.connection.password;
+        }
+        console.log(item)
+        this.connect(item);
+    },
+    destroyed(){
+        console.log('end connection');
+        this.conn.end();
     },
     methods:{
         initTerm() {
@@ -80,10 +99,10 @@ export default {
             this.term = term
         },
 
-        connect() {
+        connect(item) {
             this.conn = new Client();
             this.conn.on('ready',() => this.sshReady.call(this));
-            this.conn.connect(this.connection);
+            this.conn.connect(item);
         },
 
         sshReady() {
@@ -94,7 +113,7 @@ export default {
                 if (err) throw err;
                 stream.on('close', () => {
                     console.log('Stream :: close');
-                    conn.end();
+                    that.conn.end();
                 }).on('data', (data) => {
                     console.log('OUTPUT: ' + data);
                     that.term.write(data.toString());
@@ -106,5 +125,9 @@ export default {
     }
 }
 </script>
-
+<style scoped>
+.term{
+    height: 95vh;
+}
+</style>
 

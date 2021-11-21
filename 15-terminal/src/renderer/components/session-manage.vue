@@ -1,20 +1,17 @@
 <template>
-    <div>
-        <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
-            <el-tab-pane
-                :key="item.id"
-                v-for="(item) in connections"
-                :label="item.label"
-                :name="item.id"
-            >
-                <session :connection="item"/>
-            </el-tab-pane>
+    <div class="session-mgr">
+        <el-tabs v-model="selected_host" type="card" closable @tab-remove="removeTab">
+          <el-tab-pane
+            v-for="(item) in hosts"
+            :key="item.id"
+            :label="item.label"
+            :name="item.id"
+          >
+            <session :connection="item" class="session"/>
+          </el-tab-pane>
         </el-tabs>
-        <session v-for="(k,v) in sessions" :key="v.id" :connection="v">
-
-        </session>
     </div>
-    
+    <!---->
 </template>
 
 
@@ -23,45 +20,53 @@ import session from "./session.vue"
 
 export default {
   components: { session },
-    props:['connections'],
+    // props:['connections'],
     data() {
       return {
-        editableTabsValue: '2',
-        tabIndex: 1
+        selected_host: '0',
+        hosts: [],
+        index:0
       }
     },
     methods: {
-      handleTabsEdit(targetName, action) {
-        // if (action === 'add') {
-        //   let newTabName = ++this.tabIndex + '';
-        //   this.editableTabs.push({
-        //     title: 'New Tab',
-        //     name: newTabName,
-        //     content: 'New Tab content'
-        //   });
-        //   this.editableTabsValue = newTabName;
-        // }
-        if (action === 'remove') {
-          let tabs = this.editableTabs;
-          let activeName = this.editableTabsValue;
+      addHost(connection) {
+        //console.log('add connection.....')
+        let t = Object.assign({},connection);
+        t.id = ''+this.index;
+        this.hosts.push(t);
+        this.selected_host = t.id;
+        this.index++
+      },
+      removeTab(targetName) {
+        console.log(targetName,this.selected_host);
+        let tabs = this.hosts;
+          let activeName = this.selected_host;
           if (activeName === targetName) {
             tabs.forEach((tab, index) => {
-              if (tab.name === targetName) {
+              console.log(tab.id,targetName)
+              if (tab.id === targetName) {
                 let nextTab = tabs[index + 1] || tabs[index - 1];
                 if (nextTab) {
-                  activeName = nextTab.name;
+                  activeName = nextTab.id;
                 }
               }
             });
-          }
-          
-          this.editableTabsValue = activeName;
-          this.editableTabs = tabs.filter(tab => tab.name !== targetName);
         }
+        
+        this.selected_host = activeName;
+        let xhosts = tabs.filter(tab => tab.id !== targetName);
+        this.hosts = xhosts;
+        console.log(xhosts)
       }
     }
 }
 </script>
 
 
-Session
+<style scoped>
+.session-mgr{
+  height: 100%;
+  width: 100vw;
+  border: 1px solid #02ba6c;
+}
+</style>

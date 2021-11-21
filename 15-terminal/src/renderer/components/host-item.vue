@@ -35,7 +35,7 @@
 
             {{item.ip}} : {{item.port}}
             <p style="text-align:right;margin-right:1rem">
-              <el-button type="danger">连接</el-button>
+              <el-button type="danger" @click="connect(item)">连接</el-button>
             </p>
           </div>
         </el-card>
@@ -60,6 +60,9 @@ export default {
     };
   },
   methods: {
+    connect(item) {
+      this.$emit('connect',item);
+    },
     edit(item) {
       this.$emit('edit',item);
     },

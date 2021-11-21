@@ -14,15 +14,13 @@
 
           <el-button type="primary" @click="add">添加主机</el-button>
           <el-button type="success" @click="showHosts()">主机列表</el-button>
-          <el-button type="primary" @click="test">begin to test</el-button>
+          <el-button type="primary" @click="test">test</el-button>
 
         </div>
       </el-col>
       <el-col :span="20" class="app-right"> 
-          <div style="height:500px;width:500px;border:1px solid red;">
-           <session ref="ses" :connection="so_data" v-if="so"/>
-          </div>
-          <host-item :list="hosts" @delok="showHosts" @edit="edit"/>
+          <session-mgr ref="session_mgr"/>
+          <host-item :list="hosts" @delok="showHosts" @edit="edit" @connect="connect"/>
 
           
       </el-col>
@@ -35,8 +33,7 @@ import encrypt from '../common/encrypt';
 import request from "../common/request";
 import hostForm from "../components/host-form.vue";
 import hostItem from "../components/host-item.vue";
-import Session from '../components/session.vue';
-
+import SessionMgr from '../components/session-manage.vue';
 
 export default {
   name: "",
@@ -49,18 +46,21 @@ export default {
       hosts:[]
     };
   },
-  components: { hostForm,hostItem, Session },
+  components: { hostForm,hostItem, SessionMgr },
   methods: {
     test() {
-      this.so_data = {
-                host:'127.0.0.1',
-                port:22,
-                username:'root',
-                pass_type:'password',
-                password:'root'
-      };
-      this.so = true;
+      // this.so_data = {
+      //           host:'127.0.0.1',
+      //           port:22,
+      //           username:'root',
+      //           pass_type:'password',
+      //           password:'root'
+      // };
+      // this.so = true;
       // this.$refs.ses.connect();
+    },
+    connect(item) {
+      this.$refs.session_mgr.addHost(item);
     },
     edit(item) {
       this.$refs.form.edit(item);
@@ -156,4 +156,5 @@ body {
 #container {
   height: 100%;
 }
+
 </style>
